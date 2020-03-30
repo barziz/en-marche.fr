@@ -23,16 +23,19 @@
         {% endif %}
         <ul class="committee__hosts">
             {% for host in committee_hosts %}
-                <li class="committee-host text--body text--bold">
-                    <div>
+                <li class="committee-host text--body text--bold b__nudge--bottom">
+                    <div class="avatar-initials avatar--small avatar--style-01">
+                        {{host.initials}}
+                    </div>
+                    <div class="b__nudge--left-medium">
                         {{ has_role_adherent ? host.fullName : host.partialName }}<br />
                         <span class="text--normal text--gray b__nudge--bottom">{{ host.isSupervisorOf(committee) ? 'animateur' : 'co-animateur' }}</span>
                     </div>
                     {% if is_host and app.user.equals(host) %}
-                        (vous)
+                        <span class="m-auto--left">(vous)</span>
                     {% elseif has_role_user %}
                         <a href="{{ path('app_adherent_contact', {'uuid': host.uuid, 'from': 'committee', 'id': committee.uuid.toString}) }}"
-                           class="link--no-decor text--blue--dark text--normal b__nudge--left-small">
+                           class="link--no-decor text--blue--dark text--normal m-auto--left">
                             Contacter
                         </a>
                     {% endif %}
